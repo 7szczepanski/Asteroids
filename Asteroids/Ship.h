@@ -12,7 +12,7 @@ public:
 	void update();
 	void show(RenderWindow &);
 	void rotate(float);
-	void setAcc(float, float);
+	void setAcc(Vector2f );
 protected:
 	Vector2f position;
 	Vector2f velocity;

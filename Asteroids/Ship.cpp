@@ -35,3 +35,7 @@ void Ship::rotate(float ang) {
 	warship.setRotation(ang);
 	cout<<warship.getRotation();
 }
+
+void Ship::setAcc(Vector2f xy){
+	acceleration = xy;
+}
