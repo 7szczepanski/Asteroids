@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Ship.h"
+#include <iostream>
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -45,22 +46,26 @@ int main()
 		window.clear();
 		window.draw(background);
 		ship.update();
-		ang = heading(ship.warship.getPosition());
+		ship.edges(width, height);
 		if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			angle += -0.5;
-			ship.rotate(angle);
+			angle += -0.1;
+			ship.rotate(angle + M_PI / 2);
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			angle += 0.5;
-			ship.rotate(angle);
+			angle += 0.1;
+			ship.rotate(angle+M_PI/2);
 			
 		}
 		if (Keyboard::isKeyPressed(Keyboard::Up)) {
+
+			ang = ship.warship.getRotation();
+			ang = (ang*M_PI) / 180;
 			float speed = 0.001;
 			
 			Vector2f acc;
-			acc.x = sin((M_PI / 180)*ang)*speed;
-			acc.y = cos((M_PI / 180)*ang)*speed;
+			acc.x = sin(ship.heading)/1000;
+			acc.y = cos(ship.heading)/1000;
+			cout << "X : " << acc.x << " Y : " << acc.y << endl;
 			ship.setAcc(acc);
 		}
 
